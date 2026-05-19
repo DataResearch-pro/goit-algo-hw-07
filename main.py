@@ -62,8 +62,9 @@ class Record:
     def edit_phone(self, old_phone, new_phone):
         p = self.find_phone(old_phone)
         if p:
+            num = Phone(new_phone)
             self.phones.remove(p)
-            self.phones.append(Phone(new_phone))
+            self.phones.append(num)
         else:
             raise ValueError("Phone not found.")
 
@@ -114,8 +115,8 @@ class AddressBook(UserDict):
                 if congrat_date.weekday() >= 5:
                     congrat_date += timedelta(days=(7 - congrat_date.weekday()))
                 result.append({
-                    "name": record.name.value,
-                    "birthday": congrat_date.strftime("%d.%m.%Y")
+                    "Contact": record.name.value,
+                    "Date of the greeting": congrat_date.strftime("%d.%m.%Y")
                 })
 
         return result
@@ -156,7 +157,7 @@ def change_contact(args, book):
 
 @input_error
 def show_phone(args, book):
-    name = args[0]
+    name, *_ = args
     record = book.find(name)
     if record is None:
         raise KeyError

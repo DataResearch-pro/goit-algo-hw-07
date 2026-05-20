@@ -195,7 +195,7 @@ def birthdays(book):
     brth_dataset = book.get_upcoming_birthdays()
     if not brth_dataset:
         return "No upcoming birthdays."
-    return "\n".join(f"{item['name']}: {item['birthday']}" for item in brth_dataset)
+    return "\n".join(f"{item['Contact']}: {item['Date of the greeting']}" for item in brth_dataset)
 
 
 def main():
